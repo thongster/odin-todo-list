@@ -3,6 +3,10 @@
     --main-pink: #db2777;
 }
 
+html {
+    background: linear-gradient(135deg, #f3eafc, #fae7f1, #e8f2ff);
+}
+
 body * {
     border: 1px solid var(--main-pink);
 }
@@ -45,6 +49,7 @@ header > h1 {
 .main {
     display: flex;
     padding: 0 1rem;
+    gap: 1rem;
 }
 
 .projectSection {
@@ -52,10 +57,8 @@ header > h1 {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    width: minmax(20%, 350px);
+    width: clamp(300px, 25%, 350px);
     height: 500px; /* temporary to check size */
-    padding: 0.5rem;
-    background-color: var(--main-purple);
 }
 
 .taskSection {
@@ -64,13 +67,48 @@ header > h1 {
     align-items: center;
     justify-content: start;
     width: 100%;
-    padding: 0.5rem;
-    background-color: var(--main-pink);
+}
+
+.projectBox, .addTaskBox, .projectLabelBox, .activeTaskBox, .completedTaskBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 1px 1px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+button {
+    background: linear-gradient(to right, #a855f7, #ec4899);
+}
+
+button:hover {
+    background: linear-gradient(to right, var(--main-purple), var(--main-pink));
+}
+
+.hideLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
 @media (max-width: 768px) {
     header > h1 {
         font-size: 1.5rem;
+    }
+    
+    .projectSection {
+        width: 100%;    
     }
 
     .main {

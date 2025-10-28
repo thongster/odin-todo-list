@@ -14,10 +14,52 @@
         </header>
         <div class="main">
             <div class="projectSection">
+                <div class="projectBox">
 
+                </div>
             </div>
             <div class="taskSection">
+                <div class="addTaskBox">
+                    <form action="/" method="post">
+                        <div>
+                            <label for="title" class="hideLabel">Task Title</label>
+                            <input type="text" id="title" name="title" required placeholder="Task title...">
+                        </div>
+                        <div>
+                            <label for="shortDescription" class="hideLabel">Short Description</label>
+                            <input type="text" id="shortDescription" name="shortDescription" placeholder="Short description...">
+                        </div>
+                        <div>
+                            <label for="project" class="hideLabel">Project</label>
+                            <select name="project" id="project" required>
 
+                            </select>
+                        </div>
+                        <div>
+                            <label for="priority" class="hideLabel">Priority</label>
+                            <select name="priority" id="priority" required>
+                                <option value="Low">Low</option>
+                                <option value="Medium" select>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="dueDate" class="hideLabel">Due Date</label>
+                            <input type="date" name="dueDate" id="dueDate">
+                        </div>
+                        <button type="button">Add Details</button>
+                        <button type="submit">+ Add Task</button>
+                    </form>
+                </div>
+                <div class="projectLabelBox">
+
+                </div>
+                <div class="activeTaskBox">
+
+                </div>
+                <div class="completedTaskBox">
+
+                </div>
             </div>
         </div>
     </div>
