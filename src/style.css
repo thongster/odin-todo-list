@@ -1,1 +1,79 @@
-@import 'node_modules/modern-normalize/modern-normalize.css';
+:root {
+    --main-purple: #9333ea;
+    --main-pink: #db2777;
+}
+
+body * {
+    border: 1px solid var(--main-pink);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+header, main, footer {
+    width: 100%;
+}
+
+header {
+    display: flex;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+header > img {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+}
+
+header > h1 {
+    background: linear-gradient(to top left, #9333ea, #db2777);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.main {
+    display: flex;
+    padding: 0 1rem;
+}
+
+.projectSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: minmax(20%, 350px);
+    height: 500px; /* temporary to check size */
+    padding: 0.5rem;
+    background-color: var(--main-purple);
+}
+
+.taskSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--main-pink);
+}
+
+@media (max-width: 768px) {
+    header > h1 {
+        font-size: 1.5rem;
+    }
+
+    .main {
+        flex-direction: column;
+    }
+}
