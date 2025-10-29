@@ -3,9 +3,9 @@ const projectList = JSON.parse(localStorage.getItem("projectList")) || []
 
 class Project {
     constructor(name) {
-        this.name = name;
-        this.activeTasks = 0
-        this.completedTasks = 0
+        this.name = name
+        this.activeTasks = []
+        this.completedTasks = []
     }
 
     addToProjectList() {
@@ -13,7 +13,7 @@ class Project {
     }
 }
 
-// display exising projects in localStorage
+// loop through exising projects in localStorage and display to dom
 function displayExistingProjects() {
     projectList.forEach((e) => {
         displayProject(e.name)
@@ -72,14 +72,32 @@ function addProject() {
         e.preventDefault()
         // get input value and display to dom project list
         const newProject = new Project(e.target.newProject.value.trim())
+        // add new Project to projectList (short term memory)
         newProject.addToProjectList()
         displayProject(newProject.name)
         exitModal()
-        addProjectForm.reset()
+        addProjectForm.reset() // clear form
+        addOneProjectOption(newProject.name)
 
+        // get new project info and add to localstorage
         localStorage.setItem("projectList", JSON.stringify(projectList))
-        console.log(projectList)
+        console.log(projectList) // remove later
     }) 
 }
 
-export {addProject, displayProject, clickNewProject, exitNewProject, displayExistingProjects}
+// populate task select field with existing projects
+function fillProjectSelect() {
+    projectList.forEach((e) => {
+        addOneProjectOption(e.name)
+    })
+}
+
+// add new project option on task form
+function addOneProjectOption(projectName) {
+    const projectSelect = document.querySelector("#projectSelect")
+    const projectOption = document.createElement("option")
+    projectOption.textContent = projectName
+    projectSelect.append(projectOption)
+}
+
+export {addProject, clickNewProject, exitNewProject, displayExistingProjects, fillProjectSelect, projectList}

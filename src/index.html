@@ -36,7 +36,7 @@
                     <div class="addTaskTitle">
                         <h3>New Task</h3>
                     </div>
-                    <form action="/" method="post">
+                    <form action="/" method="post" class="newTaskFormDOM">
                         <div>
                             <label for="title" class="hideLabel">Task Title</label>
                             <input type="text" id="title" name="title" required placeholder="Task title...">
@@ -48,8 +48,8 @@
 
                         <div class="selections">
                             <div>
-                                <label for="project" class="hideLabel">Project</label>
-                                <select name="project" id="project" required>
+                                <label for="projectSelect" class="hideLabel">Project</label>
+                                <select name="projectSelect" id="projectSelect" required>
                                 </select>
                             </div>
                             <div>
