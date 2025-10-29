@@ -27,7 +27,7 @@
                         <button class="buttonOne projectButton">All Tasks</button>
                     </div>
                     <div>
-                        <button class="buttonTwo">+ New Project</button>
+                        <button class="buttonTwo" id="newProjectButton">+ New Project</button>
                     </div>
                 </div>
             </div>
@@ -82,6 +82,19 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal here (hidden by default) -->
+    <div class="modal">
+        <div class="newProjectModal">
+            <span id="closeModalBtn" class="close">&times;</span>
+            <h2>New Project</h2>
+            <form action="/" method="post">
+                <label for="newProject hideLabel"></label>
+                <input type="text" id="newProject" name="newProject" required placeholder="Project name...">
+                <button type="submit" class="buttonOne">Add Project</button>
+            </form>
         </div>
     </div>
 </body>
