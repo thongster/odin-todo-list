@@ -119,6 +119,16 @@ header > div > h2 {
     font-weight: 400;
 }
 
+.projectList {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;    
+    width: 100%;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
 .addTaskBox > form {
     display: flex;
     flex-direction: column;
@@ -188,6 +198,10 @@ header > div > h2 {
 
 .buttonTwo:hover {
   background: #f3f4f6; /* gray-100 */
+}
+
+.projectButton {
+    width: 100%;
 }
 
 
