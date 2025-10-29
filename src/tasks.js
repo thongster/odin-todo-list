@@ -10,6 +10,7 @@ class Task {
     }
 }
 
+// if task project category matches, add active task to that project
 function addTaskToProject(newTask) {
     projectList.forEach((e) => {
         if (e.name === newTask.project) {
@@ -20,6 +21,7 @@ function addTaskToProject(newTask) {
 
 }
 
+// add new task based on form data
 function newTask() {
     const newTaskForm = document.querySelector(".newTaskFormDOM")
     newTaskForm.addEventListener("submit", (e) => {
@@ -33,6 +35,10 @@ function newTask() {
         addTaskToProject(newTask)
     })
     console.log(projectList) // remove later
+}
+
+function displayNewTask() {
+    const activeTaskBox = document.querySelector(".activeTaskBox")
 }
 
 export {newTask}

@@ -217,6 +217,24 @@ header > div > h2 {
     width: 100%;
 }
 
+.noTasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+    gap: 1rem;
+    color: #374151;
+}
+
+.noTasks p {
+    margin: 0;
+
+}
+
+
+/* Modals here (hidden by default) */
 .modal {
     display: none;
     height: 100vh;
