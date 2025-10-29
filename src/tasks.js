@@ -14,7 +14,13 @@ function addTask() {
     const newTaskForm = document.querySelector(".newTaskFormDOM")
 
     newTaskForm.addEventListener("submit", (e) => {
-        console.log(e)
+        e.preventDefault()
+        const newTask = new Task(
+            e.target.title.value, e.target.shortDesc.value, 
+            e.target.projectSelect.value, e.target.priority.value, 
+            e.target.dueDate.value
+        )
+        console.log(newTask)
     })
     // console.log(projectList) // remove later
 }
