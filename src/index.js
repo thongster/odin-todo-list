@@ -1,6 +1,6 @@
 import "./../node_modules/modern-normalize/modern-normalize.css"
 import "./style.css"
-import {addProject, clickNewProject, exitNewProject, displayExistingProjects, fillProjectSelect} from "./projects.js"
+import {addProject, clickNewProject, exitNewProject, displayExistingProjects, fillProjectSelect, assignCurrentProject, displayCurrentProject} from "./projects.js"
 import {newTask, removeNoTasksBox} from "./tasks.js"
 
 addProject()
@@ -9,3 +9,5 @@ exitNewProject()
 displayExistingProjects()
 fillProjectSelect()
 newTask()
+assignCurrentProject()
+displayCurrentProject() 

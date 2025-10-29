@@ -75,13 +75,15 @@ function addProject() {
         // add new Project to projectList (short term memory)
         newProject.addToProjectList()
         displayProject(newProject.name)
-        exitModal()
+        
         addProjectForm.reset() // clear form
+        exitModal() // exit modal form
+        
         addOneProjectOption(newProject.name)
+        displayCurrentProject(assignCurrentProject())
 
         // get new project info and add to localstorage
         localStorage.setItem("projectList", JSON.stringify(projectList))
-        console.log(projectList) // remove later
     }) 
 }
 
@@ -100,4 +102,41 @@ function addOneProjectOption(projectName) {
     projectSelect.append(projectOption)
 }
 
-export {addProject, clickNewProject, exitNewProject, displayExistingProjects, fillProjectSelect, projectList}
+// determine "current" project to display
+function assignCurrentProject() {
+    const projectButtonList = document.querySelectorAll(".projectButton")
+    let currentProject = ""
+    projectButtonList.forEach((e) => {
+        e.addEventListener("click", (e) => {
+            currentProject = e.target.textContent
+            displayCurrentProject(currentProject);
+        })        
+    })
+
+    if (currentProject === "") {
+        currentProject = "All Tasks"
+    }
+    return {currentProject}
+}
+
+// loop through project list, 
+// if current project (assigned by clicking) is the same as project name
+// 
+function displayCurrentProject(currentProject) {
+    const projectLabelBox = document.querySelector(".projectLabelBox")
+    //
+    projectLabelBox.textContent = ""
+    projectList.forEach((e) => {
+        if (currentProject === e.name) {
+            const projectLabelHeading = document.createElement("h2")
+            const projectLabelTasks = document.createElement("p")
+            projectLabelHeading.textContent = `${e.name}`
+            projectLabelTasks.textContent = `${e.activeTasks.length} active, ${e.completedTasks.length} completed`
+
+            projectLabelBox.append(projectLabelHeading, projectLabelTasks)
+            console.log("im in here")
+        }
+    })
+}
+
+export {addProject, clickNewProject, exitNewProject, displayExistingProjects, fillProjectSelect, assignCurrentProject, displayCurrentProject, projectList}

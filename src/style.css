@@ -233,6 +233,16 @@ header > div > h2 {
 
 }
 
+.projectLabelBox {
+    align-items: start;
+    justify-content: start;
+    gap: 0.5rem;
+}
+
+.projectLabelBox p {
+    margin: 0;
+}
+
 
 /* Modals here (hidden by default) */
 .modal {
