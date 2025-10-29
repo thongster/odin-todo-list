@@ -6,12 +6,17 @@
 }
 
 html {
+    min-height: 100%;
     background: linear-gradient(135deg, #f3eafc, #fae7f1, #e8f2ff);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-size: 87.5%;
 }
 
-body * {
+/* body * {
     border: 1px solid var(--main-pink);
-}
+} */
 
 .container {
     display: flex;
@@ -32,21 +37,36 @@ header, main, footer {
 
 header {
     display: flex;
-    height: 4rem;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+header > div:nth-of-type(1) {
+    display: flex;
+    height: 5rem;
     justify-content: center;
     align-items: center;
 }
 
-header > img {
+header > div > img {
     aspect-ratio: 1 / 1;
     height: 100%;
 }
 
-header > h1 {
+header > div > h1 {
     background: linear-gradient(to top left, #9333ea, #db2777);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+header > div > h2 {
+    color: #374151;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 .main {
@@ -61,7 +81,6 @@ header > h1 {
     align-items: center;
     justify-content: start;
     width: clamp(300px, 25%, 350px);
-    height: 500px; /* temporary to check size */
 }
 
 .taskSection {
@@ -85,6 +104,19 @@ header > h1 {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
                 0 4px 6px -4px rgba(0, 0, 0, 0.1);
     background-color: white;
+}
+
+.projectTitle {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+}
+
+.projectTitle > h2 {
+    color: #374151;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 .addTaskBox > form {
@@ -122,24 +154,41 @@ header > h1 {
     gap: 0.5rem;
 }
 
-.addTaskButtons > button[type="button"] {
-    background: rgb(221, 221, 221);
-}
-
-button {
+.buttonOne {
+    height: 100%;
+    padding: 0.75rem 1rem;
     background: linear-gradient(to right, #a855f7, #ec4899);
-    border-radius: 6px;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.75rem; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
 }
 
-button:hover {
+.buttonOne:hover {
     background: linear-gradient(to right, var(--main-purple), var(--main-pink));
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
-button, select, option, input {
-    font-family: "Inter", "Plus Jakarta Sans", "Roboto", system-ui, "-apple-system", "BlinkMacSystemFont", 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+.buttonTwo {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #f9fafb; /* gray-50 */
+  color: #374151; /* gray-700 */
+  border: none;
+  border-radius: 0.75rem; /* 12px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
 }
 
-
+.buttonTwo:hover {
+  background: #f3f4f6; /* gray-100 */
+}
 
 
 
@@ -158,6 +207,10 @@ button, select, option, input {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+
     header > h1 {
         font-size: 1.5rem;
     }
@@ -167,6 +220,11 @@ button, select, option, input {
     }
 
     .main {
+        flex-direction: column;
+    }
+
+    .selections {
+        display: flex;
         flex-direction: column;
     }
 }
