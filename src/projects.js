@@ -33,40 +33,42 @@ function clickNewProject() {
     })
 }
 
-function exitNewProject() { 
+function exitModal() {
     const modalSection = document.querySelector(".modal")
     const newProjectModal = document.querySelector(".newProjectModal")
+    modalSection.style.display = "none";
+    newProjectModal.style.display = "none";    
+}
+
+// exit modal
+function exitNewProject() { 
+    const modalSection = document.querySelector(".modal")
     const closeModalButton = document.querySelector("#closeModalButton")
 
+    // set display to none if click on X button
     closeModalButton.addEventListener("click", () => {
-        modalSection.style.display = "none";
-        newProjectModal.style.display = "none";
+        exitModal()
     })
 
+    // set display to none if click outside modal box
     window.addEventListener("click", (e) => {
         if (e.target === modalSection) {
-            modalSection.style.display = "none";
-            newProjectModal.style.display = "none";
+            exitModal()
         }
     })
 }
 
 function addProject() {
-
-    const exampleProject = new Project("project example 1")
-    const exampleProject2 = new Project("project example 2")
-    const exampleProject3 = new Project("project example 3")
-    const exampleProject4 = new Project("project example 4")
-
-    exampleProject.addToProjectList()
-    exampleProject2.addToProjectList()
-    exampleProject3.addToProjectList()
-    exampleProject4.addToProjectList()
-    console.log(projectList)
-
-    projectList.forEach((e) => {
-        displayProject(e.name)
-    })
+    const addProjectForm = document.querySelector("#addProjectForm")
+    addProjectForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        const newProject = new Project(e.target.newProject.value)
+        newProject.addToProjectList()
+        displayProject(newProject.name)
+        exitModal()
+        addProjectForm.reset()
+        console.log(projectList)
+    }) 
 }
 
 export {addProject, displayProject, clickNewProject, exitNewProject}

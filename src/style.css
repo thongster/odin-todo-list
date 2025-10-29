@@ -130,6 +130,10 @@ header > div > h2 {
     margin: 1rem 0;
 }
 
+.projectBox > div:last-of-type {
+    width: 100%;
+}
+
 .addTaskBox > form {
     display: flex;
     flex-direction: column;
@@ -209,7 +213,7 @@ header > div > h2 {
   background: #f3f4f6;
 }
 
-.projectButton {
+.projectButton, #newProjectButton {
     width: 100%;
 }
 
