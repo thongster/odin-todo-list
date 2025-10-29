@@ -10,9 +10,17 @@ class Task {
     }
 }
 
-function addTask() {
-    const newTaskForm = document.querySelector(".newTaskFormDOM")
+function addTaskToProject(newTask) {
+    projectList.forEach((e) => {
+        if (e.name === newTask.project) {
+            e.activeTasks.push(newTask)
+        }
+    })
 
+}
+
+function newTask() {
+    const newTaskForm = document.querySelector(".newTaskFormDOM")
     newTaskForm.addEventListener("submit", (e) => {
         e.preventDefault()
         const newTask = new Task(
@@ -21,8 +29,9 @@ function addTask() {
             e.target.dueDate.value
         )
         console.log(newTask)
+        addTaskToProject(newTask)
     })
-    // console.log(projectList) // remove later
+    console.log(projectList) // remove later
 }
 
-export {addTask}
+export {newTask}
