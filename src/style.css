@@ -225,7 +225,7 @@ header > div > h2 {
 }
 
 .newProjectModal {
-    display: flex;
+    display: none;
     flex-direction: column;
     width: minmax(50%, 400px);
     justify-content: center;

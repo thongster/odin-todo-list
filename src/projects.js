@@ -21,12 +21,24 @@ function displayProject(projectName) {
     projectList.append(projectButton)
 }
 
-function addProject() {
+// display modal 
+function clickNewProject() {
+    const modalSection = document.querySelector(".modal")
+    const newProjectModal = document.querySelector(".newProjectModal")
     const newProjectButton = document.querySelector("#newProjectButton")
     newProjectButton.addEventListener("click", (e) => {
         e.preventDefault
-        alert("it works")
+        modalSection.style.display = "flex";
+        newProjectModal.style.display = "flex";
     })
+}
+
+function exitNewProject() { 
+     
+}
+
+function addProject() {
+
     const exampleProject = new Project("project example 1")
     const exampleProject2 = new Project("project example 2")
     const exampleProject3 = new Project("project example 3")
@@ -43,4 +55,4 @@ function addProject() {
     })
 }
 
-export {addProject, displayProject}
+export {addProject, displayProject, clickNewProject}
