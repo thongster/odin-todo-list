@@ -34,7 +34,21 @@ function clickNewProject() {
 }
 
 function exitNewProject() { 
-     
+    const modalSection = document.querySelector(".modal")
+    const newProjectModal = document.querySelector(".newProjectModal")
+    const closeModalButton = document.querySelector("#closeModalButton")
+
+    closeModalButton.addEventListener("click", () => {
+        modalSection.style.display = "none";
+        newProjectModal.style.display = "none";
+    })
+
+    window.addEventListener("click", (e) => {
+        if (e.target === modalSection) {
+            modalSection.style.display = "none";
+            newProjectModal.style.display = "none";
+        }
+    })
 }
 
 function addProject() {
@@ -55,4 +69,4 @@ function addProject() {
     })
 }
 
-export {addProject, displayProject, clickNewProject}
+export {addProject, displayProject, clickNewProject, exitNewProject}

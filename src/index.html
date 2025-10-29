@@ -88,8 +88,10 @@
     <!-- Modal here (hidden by default) -->
     <div class="modal">
         <div class="newProjectModal">
-            <span id="closeModalBtn" class="close">&times;</span>
-            <h2>New Project</h2>
+            <div>
+                <h2>New Project</h2>
+                <span id="closeModalButton"> &times; </span>
+            </div>
             <form action="/" method="post">
                 <label for="newProject hideLabel"></label>
                 <input type="text" id="newProject" name="newProject" required placeholder="Project name...">
