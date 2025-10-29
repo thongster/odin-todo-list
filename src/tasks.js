@@ -14,6 +14,7 @@ function addTaskToProject(newTask) {
     projectList.forEach((e) => {
         if (e.name === newTask.project) {
             e.activeTasks.push(newTask)
+            localStorage.setItem("projectList", JSON.stringify(projectList))
         }
     })
 
