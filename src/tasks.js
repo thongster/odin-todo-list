@@ -38,7 +38,13 @@ function newTask() {
 }
 
 function displayNewTask() {
+    // if no tasks in this project, remove the no tasks message box
     const activeTaskBox = document.querySelector(".activeTaskBox")
 }
 
-export {newTask}
+function removeNoTasksBox() {
+    const noTasksBox = document.querySelector(".noTasks")
+    noTasksBox.style.display = "none";
+}
+
+export {newTask, removeNoTasksBox}
