@@ -1,4 +1,5 @@
-import "./../node_modules/modern-normalize/modern-normalize.css";
-import "./style.css";
+import "./../node_modules/modern-normalize/modern-normalize.css"
+import "./style.css"
+import {addProject, displayProject} from "./projects.js"
 
-console.log("im in this bitch")
+addProject()
