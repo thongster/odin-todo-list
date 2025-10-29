@@ -120,7 +120,7 @@ header > div > h2 {
     font-weight: 400;
 }
 
-.projectList {
+.projectListDOM {
     display: flex;
     flex-direction: column;
     justify-content: start;
