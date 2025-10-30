@@ -29,40 +29,51 @@ function displayProject(projectName) {
     projectListDOM.append(projectButton)
 }
 
+// show modal pop up functijon (reusable)
+function showModal(modalSection) {
+    modalSection.style.display = "flex";
+}
+
+// exit modal pop up function (reusable)
+function exitModal(modalSection) {
+    modalSection.style.display = "none";
+}
+
 // display modal 
 function clickNewProject() {
     const modalSection = document.querySelector(".modal")
-    const newProjectModal = document.querySelector(".newProjectModal")
     const newProjectButton = document.querySelector("#newProjectButton")
     newProjectButton.addEventListener("click", (e) => {
         e.preventDefault
-        modalSection.style.display = "flex";
-        newProjectModal.style.display = "flex";
+        showModal(modalSection)
     })
 }
 
-// exit modal pop up function
-function exitModal() {
-    const modalSection = document.querySelector(".modal")
-    const newProjectModal = document.querySelector(".newProjectModal")
-    modalSection.style.display = "none";
-    newProjectModal.style.display = "none";    
-}
-
-// exit modal
+// exit new project modal
 function exitNewProject() { 
     const modalSection = document.querySelector(".modal")
     const closeModalButton = document.querySelector("#closeModalButton")
-    // set display to none if click on X button
     closeModalButton.addEventListener("click", () => {
-        exitModal()
+        exitModal(modalSection)
     })
-    // set display to none if click outside modal box
+    // if click outside modal box
     window.addEventListener("click", (e) => {
         if (e.target === modalSection) {
-            exitModal()
+            exitModal(modalSection)
         }
     })
+}
+
+// auto-create All Tasks Project
+function createAllTasks() {
+    if (JSON.parse(localStorage.getItem("projectList")).find((project) => {
+        project.name === "All Tasks"
+    })) {
+        console.log("createAllTasks first condition")
+    } else {
+        const allTasks = new Project("All Tasks").addToProjectList()
+        console.log("createAllTasks second condition")
+    }
 }
 
 // add new project
@@ -102,41 +113,4 @@ function addOneProjectOption(projectName) {
     projectSelect.append(projectOption)
 }
 
-// determine "current" project to display
-function assignCurrentProject() {
-    const projectButtonList = document.querySelectorAll(".projectButton")
-    let currentProject = ""
-    projectButtonList.forEach((e) => {
-        e.addEventListener("click", (e) => {
-            currentProject = e.target.textContent
-            displayCurrentProject(currentProject);
-        })        
-    })
-
-    if (currentProject === "") {
-        currentProject = "All Tasks"
-    }
-    return {currentProject}
-}
-
-// loop through project list, 
-// if current project (assigned by clicking) is the same as project name
-// 
-function displayCurrentProject(currentProject) {
-    const projectLabelBox = document.querySelector(".projectLabelBox")
-    //
-    projectLabelBox.textContent = ""
-    projectList.forEach((e) => {
-        if (currentProject === e.name) {
-            const projectLabelHeading = document.createElement("h2")
-            const projectLabelTasks = document.createElement("p")
-            projectLabelHeading.textContent = `${e.name}`
-            projectLabelTasks.textContent = `${e.activeTasks.length} active, ${e.completedTasks.length} completed`
-
-            projectLabelBox.append(projectLabelHeading, projectLabelTasks)
-            console.log("im in here")
-        }
-    })
-}
-
-export {addProject, clickNewProject, exitNewProject, displayExistingProjects, fillProjectSelect, assignCurrentProject, displayCurrentProject, projectList}
+export {addProject, clickNewProject, exitNewProject, displayExistingProjects, fillProjectSelect, createAllTasks, projectList}
