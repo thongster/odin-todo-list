@@ -36,17 +36,8 @@ function newTask() {
         console.log(newTask)
         addTaskToProject(newTask)
         displayCurrentProject(e.target.projectSelect.value)
+        addToAllTasks()
     })
-}
-
-function displayNewTask() {
-    // if no tasks in this project, remove the no tasks message box
-    const activeTaskBox = document.querySelector(".activeTaskBox")
-}
-
-function removeNoTasksBox() {
-    const noTasksBox = document.querySelector(".noTasks")
-    noTasksBox.style.display = "none"
 }
 
 function addToAllTasks() {
@@ -57,18 +48,18 @@ function addToAllTasks() {
             let taskList = projectList[0].activeTasks
             if (!taskList.some(item => item.title === arr.title)) {
                 projectList[0].activeTasks.push(arr)
+                localStorage.setItem("projectList", JSON.stringify(projectList))
             }
         })
         // for each completed task, if not included already, add to All Tasks
-        e.completedTasks.forEach((e) => {
+        e.completedTasks.forEach((arr) => {
             let taskList = projectList[0].completedTasks
             if (!taskList.some(item => item.title === arr.title)) {
                 projectList[0].completedTasks.push(arr)
+                localStorage.setItem("projectList", JSON.stringify(projectList))
             } 
         })
     })
-    // console.log(projectList[0].activeTasks)
-    // console.log(projectList[0].completedTasks)
 }
 
-export {newTask, removeNoTasksBox, addToAllTasks}
+export {newTask, addToAllTasks}
