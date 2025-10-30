@@ -1,3 +1,5 @@
+import {assignCurrentProject, displayCurrentProject} from "./projectlabel.js"
+
 // check local storage for projectList, or create empty array if doesn't exist yet
 const projectList = JSON.parse(localStorage.getItem("projectList")) || []
 
@@ -13,13 +15,6 @@ class Project {
     }
 }
 
-// loop through exising projects in localStorage and display to dom
-function displayExistingProjects() {
-    projectList.forEach((e) => {
-        displayProject(e.name)
-    })
-}
-
 // take project name, display on dom as button
 function displayProject(projectName) {
     const projectListDOM = document.querySelector(".projectListDOM")
@@ -29,6 +24,13 @@ function displayProject(projectName) {
     projectListDOM.append(projectButton)
 }
 
+// loop through exising projects in localStorage and display to dom
+function displayExistingProjects() {
+    projectList.forEach((e) => {
+        displayProject(e.name)
+    })
+}
+
 // show modal pop up functijon (reusable)
 function showModal(modalSection) {
     modalSection.style.display = "flex";
@@ -36,6 +38,7 @@ function showModal(modalSection) {
 
 // exit modal pop up function (reusable)
 function exitModal(modalSection) {
+    modalSection = document.querySelector(".modal")
     modalSection.style.display = "none";
 }
 
@@ -64,15 +67,11 @@ function exitNewProject() {
     })
 }
 
-// auto-create All Tasks Project
+// auto-create All Tasks Project if non detected
 function createAllTasks() {
-    if (JSON.parse(localStorage.getItem("projectList")).find((project) => {
-        project.name === "All Tasks"
-    })) {
-        console.log("createAllTasks first condition")
-    } else {
-        const allTasks = new Project("All Tasks").addToProjectList()
-        console.log("createAllTasks second condition")
+    if (JSON.parse(localStorage.getItem("projectList")) === null || projectList == []) {
+        new Project("All Tasks").addToProjectList()
+        localStorage.setItem("projectList", JSON.stringify(projectList))
     }
 }
 
