@@ -281,12 +281,22 @@ header > div > h2 {
 .taskMiddleSection {
     display: flex;
     flex-direction: column;
-    flex: 18;    
+    flex: 18;
+    gap: 1rem;
 }
 
 .taskText {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+}
+
+.taskText > h2 {
+
+}
+
+.taskText > p {
+    margin: 0;
 }
 
 .taskInfo {
