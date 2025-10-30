@@ -1,5 +1,6 @@
 import {projectList, Project} from "./projects.js"
 
+
 class Task {
     constructor(title, shortDesc, project, priority, dueDate) {
         this.title = title
@@ -34,7 +35,6 @@ function newTask() {
         console.log(newTask)
         addTaskToProject(newTask)
     })
-    console.log(projectList) // remove later
 }
 
 function displayNewTask() {
@@ -65,8 +65,8 @@ function addToAllTasks() {
             } 
         })
     })
-    console.log(projectList[0].activeTasks)
-    console.log(projectList[0].completedTasks)
+    // console.log(projectList[0].activeTasks)
+    // console.log(projectList[0].completedTasks)
 }
 
 export {newTask, removeNoTasksBox, addToAllTasks}

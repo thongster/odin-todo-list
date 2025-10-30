@@ -2,23 +2,17 @@ import {projectList} from "./projects.js"
 
 // determine "current" project to display
 const assignCurrentProject = function() {
-    const projectButtonList = document.querySelectorAll(".projectButton")
     let isCurrentProjectExist = false
     let currentProject = ""
+    const projectButtonList = document.querySelectorAll(".projectButton")
     projectButtonList.forEach((e) => {
         e.addEventListener("click", (e) => {
-            let currentProject = e.target.textContent
+            currentProject = e.target.textContent
             displayCurrentProject(currentProject)
         })        
     })
 
-    // if newest project on list is the same as newest project in projectList
-    // display new project on project label
-    // if not, just show All Tasks
-    if (projectButtonList[projectButtonList.length - 1].textContent === projectList[projectList.length - 1].name) {
-        currentProject = projectList[projectList.length - 1].name
-        displayCurrentProject(currentProject)
-    } else if (isCurrentProjectExist === false) {
+    if (isCurrentProjectExist === false) {
         currentProject = "All Tasks"
         displayCurrentProject(currentProject)
     }
@@ -38,7 +32,6 @@ function displayCurrentProject(currentProject) {
             projectLabelHeading.textContent = `${e.name}`
             projectLabelTasks.textContent = `${e.activeTasks.length} active, ${e.completedTasks.length} completed`
             projectLabelBox.append(projectLabelHeading, projectLabelTasks)
-            console.log("im in here")
         }
     })
 }

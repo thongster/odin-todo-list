@@ -1,5 +1,5 @@
 import {assignCurrentProject, displayCurrentProject} from "./projectlabel.js"
-import {displayProject, addOneProjectOption, projectList, Project} from "./projects.js"
+import {displayProject, addOneProjectOption, projectList, Project, displayExistingProjects} from "./projects.js"
 
 
 // show modal pop up functijon (reusable)
@@ -47,13 +47,15 @@ function addProject() {
         const newProject = new Project(e.target.newProject.value.trim())
         // add new Project to projectList (short term memory)
         newProject.addToProjectList()
-        displayProject(newProject.name)
-        
+  
         addProjectForm.reset() // clear form
         exitModal() // exit modal form
         
-        addOneProjectOption(newProject.name)
-        displayCurrentProject(assignCurrentProject())
+        displayProject(newProject.name) // display to project side bar
+        addOneProjectOption(newProject.name) // add to New Task form selections
+        assignCurrentProject() // immediately add to current projectList
+        displayCurrentProject(newProject.name) // display to project Label box
+        
 
         // get new project info and add to localstorage
         localStorage.setItem("projectList", JSON.stringify(projectList))

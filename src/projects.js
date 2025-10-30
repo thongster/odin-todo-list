@@ -39,7 +39,7 @@ function createAllTasks() {
     }
 }
 
-// populate task select field with existing projects
+// populate task select field with existing projects, except All Tasks
 function fillProjectSelect() {
     projectList.forEach((e) => {
         if (e.name != "All Tasks") {
