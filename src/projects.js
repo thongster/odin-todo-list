@@ -42,7 +42,9 @@ function createAllTasks() {
 // populate task select field with existing projects
 function fillProjectSelect() {
     projectList.forEach((e) => {
-        addOneProjectOption(e.name)
+        if (e.name != "All Tasks") {
+            addOneProjectOption(e.name)
+        }
     })
 }
 
