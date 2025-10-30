@@ -1,31 +1,38 @@
 import {projectList} from "./projects.js"
 
 // determine "current" project to display
-function assignCurrentProject() {
+const assignCurrentProject = function() {
     const projectButtonList = document.querySelectorAll(".projectButton")
+    let isCurrentProjectExist = false
     let currentProject = ""
     projectButtonList.forEach((e) => {
         e.addEventListener("click", (e) => {
-            currentProject = e.target.textContent
-            displayCurrentProject(currentProject);
+            let currentProject = e.target.textContent
+            displayCurrentProject(currentProject)
         })        
     })
 
-    if (currentProject === "") {
+    // if newest project on list is the same as newest project in projectList
+    // display new project on project label
+    // if not, just show All Tasks
+    if (projectButtonList[projectButtonList.length - 1].textContent === projectList[projectList.length - 1].name) {
+        currentProject = projectList[projectList.length - 1].name
+        displayCurrentProject(currentProject)
+    } else if (isCurrentProjectExist === false) {
         currentProject = "All Tasks"
+        displayCurrentProject(currentProject)
     }
     return {currentProject}
 }
 
 function displayCurrentProject(currentProject) {
     const projectLabelBox = document.querySelector(".projectLabelBox")
-    // start at empty 
-    projectLabelBox.textContent = ""
     // loop through project list, 
     projectList.forEach((e) => {
         // if current project (assigned by clicking) is the same as project name
         // display project heading, active, completed tasks
         if (currentProject === e.name) {
+            projectLabelBox.textContent = ""
             const projectLabelHeading = document.createElement("h2")
             const projectLabelTasks = document.createElement("p")
             projectLabelHeading.textContent = `${e.name}`

@@ -42,7 +42,7 @@ function exitModal(modalSection) {
     modalSection.style.display = "none";
 }
 
-// display modal 
+// display modal when clicking + New Project button
 function clickNewProject() {
     const modalSection = document.querySelector(".modal")
     const newProjectButton = document.querySelector("#newProjectButton")
