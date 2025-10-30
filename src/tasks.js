@@ -1,4 +1,5 @@
 import {projectList, Project} from "./projects.js"
+import {displayCurrentProject} from "./projectlabel.js"
 
 
 class Task {
@@ -34,6 +35,7 @@ function newTask() {
         )
         console.log(newTask)
         addTaskToProject(newTask)
+        displayCurrentProject(e.target.projectSelect.value)
     })
 }
 
