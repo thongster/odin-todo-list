@@ -242,6 +242,7 @@ header > div > h2 {
     justify-content: start;
     width: 100%;
     border-radius: 12px;
+    gap: 1rem;
 }
 
 .activeTaskBox > h2 {

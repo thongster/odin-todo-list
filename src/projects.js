@@ -1,5 +1,3 @@
-
-
 // check local storage for projectList, or create empty array if doesn't exist yet
 const projectList = JSON.parse(localStorage.getItem("projectList")) || []
 

@@ -17,4 +17,4 @@ assignCurrentProject()
 displayCurrentProject() 
 addToAllTasks() // initialize all tasks
 
-displayNewTask()
+displayNewTask(assignCurrentProject())
