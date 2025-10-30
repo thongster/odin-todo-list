@@ -1,4 +1,4 @@
-import {projectList} from "./projects.js"
+import {projectList, Project} from "./projects.js"
 
 class Task {
     constructor(title, shortDesc, project, priority, dueDate) {
@@ -44,7 +44,29 @@ function displayNewTask() {
 
 function removeNoTasksBox() {
     const noTasksBox = document.querySelector(".noTasks")
-    noTasksBox.style.display = "none";
+    noTasksBox.style.display = "none"
 }
 
-export {newTask, removeNoTasksBox}
+function addToAllTasks() {
+    // loop through all projects except "All Tasks" (index[0])
+    projectList.slice(1).forEach((e) => {
+        // for each active task, if not included already, add to All Tasks
+        e.activeTasks.forEach((arr) => {
+            let taskList = projectList[0].activeTasks
+            if (!taskList.some(item => item.title === arr.title)) {
+                projectList[0].activeTasks.push(arr)
+            }
+        })
+        // for each completed task, if not included already, add to All Tasks
+        e.completedTasks.forEach((e) => {
+            let taskList = projectList[0].completedTasks
+            if (!taskList.some(item => item.title === arr.title)) {
+                projectList[0].completedTasks.push(arr)
+            } 
+        })
+    })
+    console.log(projectList[0].activeTasks)
+    console.log(projectList[0].completedTasks)
+}
+
+export {newTask, removeNoTasksBox, addToAllTasks}
