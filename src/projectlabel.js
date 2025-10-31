@@ -24,6 +24,7 @@ const assignCurrentProject = function() {
     return {currentProject}
 }
 
+// display current project on project label box
 function displayCurrentProject(currentProject) {
     const projectLabelBox = document.querySelector(".projectLabelBox")
     // loop through project list, 
