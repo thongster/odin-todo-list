@@ -1,7 +1,6 @@
 import {assignCurrentProject, displayCurrentProject} from "./projectlabel.js"
 import {displayProject, addOneProjectOption, projectList, Project, displayExistingProjects} from "./projects.js"
 
-
 // show modal pop up functijon (reusable)
 function showModal(modalSection) {
     modalSection.style.display = "flex";

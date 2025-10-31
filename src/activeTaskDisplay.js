@@ -14,15 +14,17 @@ const activeTasksControl = function(currentProj) {
     } else if (typeof currentProj === "string") {
         projectToShow = (projectList.find((project) => {return project.name == currentProj}))
     }
-
+    
+    // show tasks on the active tasks box section
     function displayNewTask() {
+        // if tasks exist, remove the no task box
+        // if tasks dont exist, show it and don't continue with function
         if (projectToShow.activeTasks.length > 0) {
             removeNoTasksBox()
         } else if (projectToShow.activeTasks.length === 0) {
             showNoTasksBox()
             return;
         }
-
         for (let i = 0; i < projectToShow.activeTasks.length; i++) {
             
             const activeTaskTitle = document.createElement("h2")

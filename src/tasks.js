@@ -40,11 +40,11 @@ function newTask() {
     })
 }
 
+// sum up all tasks in all project to create the "All Tasks" project
 function addToAllTasks() {
     // loop through all projects except "All Tasks" (index[0])
     projectList.slice(1).forEach((e) => {
         // for each active task, if not included already, add to All Tasks
-        console.log(e)
         e.activeTasks.forEach((arr) => {
             let taskList = projectList[0].activeTasks
             if (!taskList.some(item => item.title === arr.title)) {

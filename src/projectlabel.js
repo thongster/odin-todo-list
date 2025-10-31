@@ -3,7 +3,6 @@ import {activeTasksControl} from "./activeTaskDisplay.js"
 
 // determine "current" project to display
 const assignCurrentProject = function() {
-    let isCurrentProjectExist = false
     let currentProject = ""
     const projectButtonList = document.querySelectorAll(".projectButton")
     projectButtonList.forEach((e) => {
@@ -17,11 +16,14 @@ const assignCurrentProject = function() {
         })        
     })
 
-    if (isCurrentProjectExist === false) {
-        currentProject = "All Tasks"
-        displayCurrentProject(currentProject)
-    }
     return {currentProject}
+}
+
+function defaultDisplayAllTasks() {
+    let currentProject = "All Tasks"
+    displayCurrentProject(currentProject)
+    const fillTasks = activeTasksControl(currentProject)
+    fillTasks.displayNewTask()
 }
 
 // display current project on project label box
@@ -47,4 +49,4 @@ function displayAllTasksProject() {
 
 }
 
-export {assignCurrentProject, displayCurrentProject}
+export {assignCurrentProject, displayCurrentProject, defaultDisplayAllTasks}
