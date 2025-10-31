@@ -54,7 +54,6 @@ function addProject() {
         addOneProjectOption(newProject.name) // add to New Task form selections
         assignCurrentProject() // immediately add to current projectList
         displayCurrentProject(newProject.name) // display to project Label box
-        
 
         // get new project info and add to localstorage
         localStorage.setItem("projectList", JSON.stringify(projectList))

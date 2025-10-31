@@ -1,5 +1,6 @@
 import {projectList, Project} from "./projects.js"
 import {displayCurrentProject, assignCurrentProject} from "./projectlabel.js"
+import {activeTasksControl} from "./activeTaskDisplay.js"
 
 
 class Task {
@@ -28,6 +29,8 @@ function moveTasktoComplete(currentTask) {
         if (e.name === currentTask.project) {
             const taskToRemove = e.activeTasks.indexOf(newTask)
             e.activeTasks.splice(taskToRemove, 1)
+            console.log(e.activeTasks)
+            localStorage.setItem("projectList", JSON.stringify(projectList))
             e.completedTasks.push(currentTask)
             localStorage.setItem("projectList", JSON.stringify(projectList))
         }
@@ -45,7 +48,11 @@ function convertActiveToCompleteTask() {
             // find project object in projectList by matching names
             const currentProject = projectList.find((project) => {return project.name == currentProjectName})
             const currentTask = currentProject.activeTasks.find((task) => {return task.title == currentTaskTitle})
+            activeTasksControl().hideDisplayNewTask()
+            activeTasksControl(e.target.projectSelect.value).displayNewTask()
             moveTasktoComplete(currentTask)
+            addToAllTasks()
+            localStorage.setItem("projectList", JSON.stringify(projectList))
         }
     })
 }
@@ -63,12 +70,16 @@ function newTask() {
         console.log(newTask)
         addTaskToProject(newTask)
         displayCurrentProject(e.target.projectSelect.value)
+        activeTasksControl().hideDisplayNewTask()
+        activeTasksControl(e.target.projectSelect.value).displayNewTask()
         addToAllTasks()
     })
 }
 
 // sum up all tasks in all project to create the "All Tasks" project
 function addToAllTasks() {
+    projectList[0].activeTasks.length = 0
+    projectList[0].completedTasks.length = 0
     // loop through all projects except "All Tasks" (index[0])
     projectList.slice(1).forEach((e) => {
         // for each active task, if not included already, add to All Tasks

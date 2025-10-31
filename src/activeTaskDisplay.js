@@ -7,6 +7,7 @@ function displayCompleteTasks() {
 // display and remove task factory function
 const activeTasksControl = function(currentProj) {
     const activeTaskBox = document.querySelector(".activeTaskBox")
+    const completedTaskBox = document.querySelector(".completedTaskBox")
 
     let projectToShow
     if (typeof currentProj === "object") {
@@ -37,9 +38,13 @@ const activeTasksControl = function(currentProj) {
 
     // removes existing dom, used to display new project without duplication
     function hideDisplayNewTask() {
-        let domList = Array.prototype.slice.call(activeTaskBox.children)
-        for (let i = domList.length - 1; i > 0; i--) { 
-            domList[i].remove()
+        let domListActive = Array.prototype.slice.call(activeTaskBox.children)
+        let domListCompleted = Array.prototype.slice.call(completedTaskBox.children)
+        for (let i = domListActive.length - 1; i > 0; i--) { 
+            domListActive[i].remove()
+        }
+        for (let i = domListCompleted.length - 1; i > 0; i--) { 
+            domListCompleted[i].remove()
         }
     }
 
