@@ -5,17 +5,24 @@ const activeTasksControl = function(currentProj) {
     const activeTaskBox = document.querySelector(".activeTaskBox")
     const completedTaskBox = document.querySelector(".completedTaskBox")
 
-    let projectToShow
-    if (typeof currentProj === "object") {
-        projectToShow = (projectList.find((project) => {return project.name == currentProj.currentProject}))
-    } else if (typeof currentProj === "string") {
-        projectToShow = (projectList.find((project) => {return project.name == currentProj}))
+    function getProjectToShow() {
+        if (typeof currentProj === "object") {
+            return (projectList.find((project) => {return project.name == currentProj.name}))
+        } else if (typeof currentProj === "string") {
+            return (projectList.find((project) => {return project.name == currentProj}))
+        } 
     }
     
     // show tasks on the active tasks box section
     function displayNewTask() {
         // if tasks exist, remove the no task box
         // if tasks dont exist, show it and don't continue with function
+        const projectToShow = getProjectToShow();
+        if (!projectToShow) {
+            console.log("hit the guard")
+            return;
+        }
+
         if (projectToShow.activeTasks.length > 0 || projectToShow.completedTasks.length > 0) {
             removeNoTasksBox()
         } else if (projectToShow.activeTasks.length === 0 && projectToShow.completedTasks.length === 0) {

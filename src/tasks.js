@@ -48,10 +48,10 @@ function convertActiveToCompleteTask() {
             // find project object in projectList by matching names
             const currentProject = projectList.find((project) => {return project.name == currentProjectName})
             const currentTask = currentProject.activeTasks.find((task) => {return task.title == currentTaskTitle})
-            activeTasksControl().hideDisplayNewTask()
-            activeTasksControl(e.target.projectSelect.value).displayNewTask()
-            moveTasktoComplete(currentTask)
-            addToAllTasks()
+            activeTasksControl().hideDisplayNewTask() // clears active and complete tasks dom
+            moveTasktoComplete(currentTask) // deletes current task and moves to complete in memory
+            addToAllTasks() // recalculate All Tasks in memory
+            activeTasksControl(currentProject).displayNewTask()
             localStorage.setItem("projectList", JSON.stringify(projectList))
         }
     })
