@@ -20,19 +20,34 @@ function addTaskToProject(newTask) {
             localStorage.setItem("projectList", JSON.stringify(projectList))
         }
     })
+}
 
+// if task project category matches, add complete task to that project
+function moveTasktoComplete(currentTask) {
+    projectList.forEach((e) => {
+        if (e.name === currentTask.project) {
+            const taskToRemove = e.activeTasks.indexOf(newTask)
+            e.activeTasks.splice(taskToRemove, 1)
+            e.completedTasks.push(currentTask)
+            localStorage.setItem("projectList", JSON.stringify(projectList))
+        }
+    })
 }
 
 function convertActiveToCompleteTask() {
-    const allCompleteButtonDivs = document.querySelectorAll(".buttonDiv > button")
-    // const completeButtonList = allCompleteButtonDivs.querySelector("button")
-    allCompleteButtonDivs.forEach((button) => {
-        button.addEventListener("click", (e) => {
-            const ancestor = button.closest(".activeTaskItem")
-            console.log(ancestor.querySelector(".taskInfo > button:nth-of-type(2)").textContent)
-        })
+    // set up event delegation to listen for button click
+    document.querySelector(".activeTaskBox").addEventListener("click", (e) => {
+        if (e.target.matches(".buttonDiv > button")) {
+            // find ancestor .activeTaskItem
+            const ancestor = e.target.closest(".activeTaskItem")
+            const currentProjectName = ancestor.querySelector(".taskInfo > button:nth-of-type(2)").textContent
+            const currentTaskTitle = ancestor.querySelector(".taskText > h3").textContent
+            // find project object in projectList by matching names
+            const currentProject = projectList.find((project) => {return project.name == currentProjectName})
+            const currentTask = currentProject.activeTasks.find((task) => {return task.title == currentTaskTitle})
+            moveTasktoComplete(currentTask)
+        }
     })
-
 }
 
 // add new task based on form data
