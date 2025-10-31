@@ -1,4 +1,5 @@
 import {projectList} from "./projects.js"
+import {displayNewTask} from "./activeTaskDisplay.js"
 
 // determine "current" project to display
 const assignCurrentProject = function() {
@@ -9,6 +10,8 @@ const assignCurrentProject = function() {
         e.addEventListener("click", (e) => {
             currentProject = e.target.textContent
             displayCurrentProject(currentProject)
+            console.log(currentProject)
+            displayNewTask(currentProject) // show tasks for that project
         })        
     })
 
@@ -25,6 +28,7 @@ function displayCurrentProject(currentProject) {
     projectList.forEach((e) => {
         // if current project (assigned by clicking) is the same as project name
         // display project heading, active, completed tasks
+        
         if (currentProject === e.name) {
             projectLabelBox.textContent = ""
             const projectLabelHeading = document.createElement("h2")

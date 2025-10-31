@@ -12,13 +12,17 @@ function displayCompleteTasks() {
 
 function displayNewTask(currentProj) {
     // if no tasks in this project, remove the no tasks message box
-    console.log(projectList)
-    console.log(currentProj.currentProject)
+    let projectToShow = []
 
-    const array = (projectList.find((project) => {return project.name == currentProj.currentProject}))
-    console.log(array)
+    if (typeof currentProj === "object") {
+        projectToShow = (projectList.find((project) => {return project.name == currentProj.currentProject}))
+    } else if (typeof currentProj === "string") {
+        projectToShow = (projectList.find((project) => {return project.name == currentProj}))
+    }
+    
+    console.log(projectToShow)
     removeNoTasksBox()
-    for (let i = 0; i < array.activeTasks.length; i++) {
+    for (let i = 0; i < projectToShow.activeTasks.length; i++) {
         const activeTaskBox = document.querySelector(".activeTaskBox")
         const activeTaskTitle = document.createElement("h2")
         const activeTaskItem = document.createElement("div")
@@ -44,11 +48,11 @@ function displayNewTask(currentProj) {
         taskOptions.classList.add("taskOptions")
 
         activeTaskTitle.textContent = "Active Tasks"
-        taskTitle.textContent = array.activeTasks[i].title
-        taskDesc.textContent = array.activeTasks[i].shortDesc
-        taskPriority.textContent = array.activeTasks[i].priority
-        taskProject.textContent = array.activeTasks[i].project
-        taskDueDate.textContent = array.activeTasks[i].dueDate
+        taskTitle.textContent = projectToShow.activeTasks[i].title
+        taskDesc.textContent = projectToShow.activeTasks[i].shortDesc
+        taskPriority.textContent = projectToShow.activeTasks[i].priority
+        taskProject.textContent = projectToShow.activeTasks[i].project
+        taskDueDate.textContent = projectToShow.activeTasks[i].dueDate
         taskEdit.textContent = "Edit"
         taskDelete.textContent = "Delete"
         
@@ -63,12 +67,10 @@ function displayNewTask(currentProj) {
         taskInfo.append(taskPriority, taskProject, taskDueDate)
         taskOptions.append(taskEdit, taskDelete)
     }
-    // projectList.forEach((project) => {
-    //     if (project.name === assignCurrentProject().currentProject) {
+}
 
-
-        // }
-    // })
+function showTasks() {
+    
 }
 
 function removeNoTasksBox() {
