@@ -1,5 +1,6 @@
 import {assignCurrentProject, displayCurrentProject} from "./projectlabel.js"
 import {displayProject, addOneProjectOption, projectList, Project, displayExistingProjects} from "./projects.js"
+import {activeTasksControl} from "./activeTaskDisplay.js"
 
 // show modal pop up functijon (reusable)
 function showModal(modalSection) {
@@ -54,6 +55,8 @@ function addProject() {
         addOneProjectOption(newProject.name) // add to New Task form selections
         assignCurrentProject() // immediately add to current projectList
         displayCurrentProject(newProject.name) // display to project Label box
+        activeTasksControl().hideDisplayNewTask()
+        activeTasksControl(newProject.name).displayNewTask()
 
         // get new project info and add to localstorage
         localStorage.setItem("projectList", JSON.stringify(projectList))

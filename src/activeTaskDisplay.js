@@ -1,9 +1,5 @@
 import {projectList, Project} from "./projects.js"
 
-function displayCompleteTasks() {
-
-}
-
 // display and remove task factory function
 const activeTasksControl = function(currentProj) {
     const activeTaskBox = document.querySelector(".activeTaskBox")
@@ -98,7 +94,7 @@ function displayActiveTasks(projectToShow, i) {
     taskDelete.textContent = "Delete"
     
     // if title doesn't exist yet, then append it
-    if (i === 0) {
+    if (!document.querySelector(".activeTaskBox > h2")) {
         activeTaskBox.append(activeTaskTitle)
     }
 
@@ -148,7 +144,9 @@ function displayCompletedTasks(projectToShow, i) {
     taskDelete.textContent = "Delete"
     
     // if title doesn't exist yet, then append it
-    if (i === 0) {
+    console.log(!document.querySelector(".completedTaskBox > h2"))
+    if (!document.querySelector(".completedTaskBox > h2")) {
+        console.log("print it")
         completedTaskBox.append(completedTaskTitle)
     }
 
@@ -159,16 +157,6 @@ function displayCompletedTasks(projectToShow, i) {
     taskText.append(taskTitle, taskDesc)
     taskInfo.append(taskPriority, taskProject, taskDueDate)
     taskOptions.append(taskEdit, taskDelete)    
-}
-
-function hideActiveTasks() {
-    const activeTaskBox = document.querySelector(".activeTaskBox")
-    activeTaskBox.style.display = "none"
-}
-
-function showActiveTaskBox() {
-    const activeTaskBox = document.querySelector(".activeTaskBox")
-    activeTaskBox.style.display = "flex"
 }
 
 export {activeTasksControl}
