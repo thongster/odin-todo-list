@@ -35,6 +35,7 @@ const activeTasksControl = function(currentProj) {
         }
     }
 
+    // removes existing dom, used to display new project without duplication
     function hideDisplayNewTask() {
         let domList = Array.prototype.slice.call(activeTaskBox.children)
         for (let i = domList.length - 1; i > 0; i--) { 
@@ -51,7 +52,6 @@ const activeTasksControl = function(currentProj) {
         const noTasksBox = document.querySelector(".noTasks")
         noTasksBox.style.display = "flex"
     }
-
     
     return {displayNewTask, hideDisplayNewTask, removeNoTasksBox, showNoTasksBox}
 }

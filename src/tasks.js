@@ -1,5 +1,5 @@
 import {projectList, Project} from "./projects.js"
-import {displayCurrentProject} from "./projectlabel.js"
+import {displayCurrentProject, assignCurrentProject} from "./projectlabel.js"
 
 
 class Task {
@@ -19,6 +19,18 @@ function addTaskToProject(newTask) {
             e.activeTasks.push(newTask)
             localStorage.setItem("projectList", JSON.stringify(projectList))
         }
+    })
+
+}
+
+function convertActiveToCompleteTask() {
+    const allCompleteButtonDivs = document.querySelectorAll(".buttonDiv > button")
+    // const completeButtonList = allCompleteButtonDivs.querySelector("button")
+    allCompleteButtonDivs.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            const ancestor = button.closest(".activeTaskItem")
+            console.log(ancestor.querySelector(".taskInfo > button:nth-of-type(2)").textContent)
+        })
     })
 
 }
@@ -63,4 +75,4 @@ function addToAllTasks() {
     })
 }
 
-export {newTask, addToAllTasks}
+export {newTask, addToAllTasks, convertActiveToCompleteTask}
