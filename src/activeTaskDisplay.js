@@ -5,6 +5,7 @@ const activeTasksControl = function(currentProj) {
     const activeTaskBox = document.querySelector(".activeTaskBox")
     const completedTaskBox = document.querySelector(".completedTaskBox")
 
+    // determine project to show variable for future us
     function getProjectToShow() {
         if (typeof currentProj === "object") {
             return (projectList.find((project) => {return project.name == currentProj.name}))
@@ -58,7 +59,9 @@ const activeTasksControl = function(currentProj) {
 
     function showNoTasksBox() {
         const noTasksBox = document.querySelector(".noTasks")
-        noTasksBox.style.display = "flex"
+        noTasksBox.style.display = "flex"  
+        const completedTaskTitle = document.querySelector("#completedTaskTitle")
+        completedTaskTitle.style.display ="none"      
     }
     
     return {displayNewTask, hideDisplayNewTask, removeNoTasksBox, showNoTasksBox}
