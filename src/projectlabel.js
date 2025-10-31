@@ -8,7 +8,9 @@ const assignCurrentProject = function() {
     projectButtonList.forEach((e) => {
         e.addEventListener("click", (e) => {
             const completedTaskTitle = document.querySelector("#completedTaskTitle")
-            completedTaskTitle.style.display ="flex"  
+            if (completedTaskTitle) {
+                completedTaskTitle.style.display = "none"      
+            }
             currentProject = e.target.textContent
             displayCurrentProject(currentProject)
             const task = activeTasksControl(currentProject)

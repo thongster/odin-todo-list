@@ -29,7 +29,6 @@ function moveTasktoComplete(currentTask) {
         if (e.name === currentTask.project) {
             const taskToRemove = e.activeTasks.indexOf(newTask)
             e.activeTasks.splice(taskToRemove, 1)
-            console.log(e.activeTasks)
             localStorage.setItem("projectList", JSON.stringify(projectList))
             e.completedTasks.push(currentTask)
             localStorage.setItem("projectList", JSON.stringify(projectList))
@@ -101,4 +100,42 @@ function addToAllTasks() {
     })
 }
 
-export {newTask, addToAllTasks, convertActiveToCompleteTask}
+function deleteTask() {
+    // set up event delegation to listen for button click
+    document.querySelectorAll(".taskOptions").forEach((e) => {
+        const deleteButton = e.querySelector(".deleteButton");
+        deleteButton.addEventListener("click", (item) => {
+            const ancestor = item.target.closest(".activeTaskItem, .completedTaskItem")
+            // find current Task Title and Project Name
+            const currentProjectName = ancestor.querySelector(".taskInfo > button:nth-of-type(2)").textContent
+            const currentTaskTitle = ancestor.querySelector(".taskText > h3").textContent
+            
+            // find project object in projectList by matching names
+            const currentProject = projectList.find((project) => {return project.name == currentProjectName})
+
+            // search to see which list the task is in
+            const activeMatch = currentProject.activeTasks.find((task) => {return task.title === currentTaskTitle});
+            const completedMatch = currentProject.completedTasks.find((task) => {return task.title === currentTaskTitle});
+            
+            if (activeMatch === undefined) {
+                currentProject.completedTasks.splice(completedMatch, 1)   
+                localStorage.setItem("projectList", JSON.stringify(projectList))  
+            } else if (completedMatch === undefined) {
+                currentProject.activeTasks.splice(activeMatch, 1)    
+                localStorage.setItem("projectList", JSON.stringify(projectList)) 
+            }
+
+            activeTasksControl(currentProject).displayNewTask()
+            
+            console.log(ancestor, currentProjectName, currentTaskTitle, currentProject)
+            console.log(activeMatch, completedMatch)
+            // localStorage.setItem("projectList", JSON.stringify(projectList))
+        })
+    })
+
+
+            
+
+}
+
+export {newTask, addToAllTasks, convertActiveToCompleteTask, deleteTask}

@@ -314,6 +314,9 @@ header > div > h2 {
     display: flex;
     flex-direction: column;
     flex: 1;
+    gap: 0.5rem;
+    /* justify-content: space-between;
+    height: 100%; */
 }
 
 
@@ -330,6 +333,9 @@ header > div > h2 {
     margin: 0;
 }
 
+.taskOptions > button:nth-of-type(2) {
+    
+}
 
 /* Modals here (hidden by default) */
 .modal {

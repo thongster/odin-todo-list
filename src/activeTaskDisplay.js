@@ -59,9 +59,11 @@ const activeTasksControl = function(currentProj) {
 
     function showNoTasksBox() {
         const noTasksBox = document.querySelector(".noTasks")
-        noTasksBox.style.display = "flex"  
+        noTasksBox.style.display = "flex"
         const completedTaskTitle = document.querySelector("#completedTaskTitle")
-        completedTaskTitle.style.display ="none"      
+        if (completedTaskTitle) {
+            completedTaskTitle.style.display = "none"      
+        }
     }
     
     return {displayNewTask, hideDisplayNewTask, removeNoTasksBox, showNoTasksBox}
@@ -92,6 +94,8 @@ function displayActiveTasks(projectToShow, i) {
     taskText.classList.add("taskText")
     taskInfo.classList.add("taskInfo")
     taskOptions.classList.add("taskOptions")
+    taskEdit.classList.add("editButton")
+    taskDelete.classList.add("deleteButton")
 
     // full in task based on index of activeTasks
     activeTaskTitle.textContent = "Active Tasks"
@@ -142,6 +146,8 @@ function displayCompletedTasks(projectToShow, i) {
     taskText.classList.add("taskText")
     taskInfo.classList.add("taskInfo")
     taskOptions.classList.add("taskOptions")
+    taskEdit.classList.add("editButton")
+    taskDelete.classList.add("deleteButton")
 
     // full in task based on index of activeTasks
     completedTaskTitle.textContent = "Completed Tasks"
@@ -154,9 +160,7 @@ function displayCompletedTasks(projectToShow, i) {
     taskDelete.textContent = "Delete"
     
     // if title doesn't exist yet, then append it
-    console.log(!document.querySelector(".completedTaskBox > h2"))
     if (!document.querySelector(".completedTaskBox > h2")) {
-        console.log("print it")
         completedTaskBox.append(completedTaskTitle)
     }
 
