@@ -4,7 +4,7 @@ import {displayExistingProjects, fillProjectSelect, createAllTasks} from "./proj
 import {newTask, addToAllTasks} from "./tasks.js"
 import {assignCurrentProject, displayCurrentProject} from "./projectlabel.js"
 import {addProject, clickNewProject, exitNewProject} from "./newProjectModal.js"
-import {displayNewTask, removeNoTasksBox, showNoTasksBox} from "./activeTaskDisplay.js"
+import {activeTasksControl, removeNoTasksBox, showNoTasksBox} from "./activeTaskDisplay.js"
 
 addProject()
 clickNewProject()
@@ -17,4 +17,4 @@ assignCurrentProject()
 displayCurrentProject() 
 addToAllTasks() // initialize all tasks
 
-displayNewTask(assignCurrentProject())
+// activeTasksControl(assignCurrentProject())

@@ -1,5 +1,5 @@
 import {projectList} from "./projects.js"
-import {displayNewTask} from "./activeTaskDisplay.js"
+import {activeTasksControl} from "./activeTaskDisplay.js"
 
 // determine "current" project to display
 const assignCurrentProject = function() {
@@ -10,8 +10,10 @@ const assignCurrentProject = function() {
         e.addEventListener("click", (e) => {
             currentProject = e.target.textContent
             displayCurrentProject(currentProject)
-            console.log(currentProject)
-            displayNewTask(currentProject) // show tasks for that project
+            const task = activeTasksControl(currentProject)
+            task.hideDisplayNewTask()
+            task.displayNewTask() // show tasks for that project
+            
         })        
     })
 
