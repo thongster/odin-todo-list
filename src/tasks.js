@@ -126,6 +126,7 @@ function deleteTask() {
             }
 
             activeTasksControl(currentProject).displayNewTask()
+            addToAllTasks() // recalculate tasks for All Tasks
             
             console.log(ancestor, currentProjectName, currentTaskTitle, currentProject)
             console.log(activeMatch, completedMatch)

@@ -14,7 +14,7 @@ const activeTasksControl = function(currentProj) {
         } 
     }
     
-    // show tasks on the active tasks box section
+    // show tasks on the active and completed tasks box section
     function displayNewTask() {
         // if tasks exist, remove the no task box
         // if tasks dont exist, show it and don't continue with function
@@ -24,19 +24,21 @@ const activeTasksControl = function(currentProj) {
             return;
         }
 
-        if (projectToShow.activeTasks.length > 0 || projectToShow.completedTasks.length > 0) {
-            removeNoTasksBox()
-        } else if (projectToShow.activeTasks.length === 0 && projectToShow.completedTasks.length === 0) {
-            showNoTasksBox()
-            return;
-        }
-
         // display active and completed tasks
         for (let i = 0; i < projectToShow.activeTasks.length; i++) {
             displayActiveTasks(projectToShow, i)
         }
         for (let i = 0; i < projectToShow.completedTasks.length; i++) {
             displayCompletedTasks(projectToShow, i)
+        }
+
+        if (projectToShow.activeTasks.length > 0 || projectToShow.completedTasks.length > 0) {
+            removeNoTasksBox()
+            toggleCompletedTaskTitle(projectToShow)
+        } else if (projectToShow.activeTasks.length === 0 && projectToShow.completedTasks.length === 0) {
+            showNoTasksBox()
+            toggleCompletedTaskTitle(projectToShow)
+            return;
         }
     }
 
@@ -60,13 +62,19 @@ const activeTasksControl = function(currentProj) {
     function showNoTasksBox() {
         const noTasksBox = document.querySelector(".noTasks")
         noTasksBox.style.display = "flex"
-        const completedTaskTitle = document.querySelector("#completedTaskTitle")
-        if (completedTaskTitle) {
-            completedTaskTitle.style.display = "none"      
+    }
+
+    function toggleCompletedTaskTitle(projectToShow) {
+        if (projectToShow.completedTasks.length === 0) {
+            const completedTaskTitle = document.querySelector("#completedTaskTitle")
+            completedTaskTitle.style.display = "none"   
+        } else {
+            const completedTaskTitle = document.querySelector("#completedTaskTitle")
+            completedTaskTitle.style.display = "flex"   
         }
     }
     
-    return {displayNewTask, hideDisplayNewTask, removeNoTasksBox, showNoTasksBox}
+    return {displayNewTask, hideDisplayNewTask, removeNoTasksBox, showNoTasksBox, toggleCompletedTaskTitle}
 }
 
 function displayActiveTasks(projectToShow, i) {
@@ -160,7 +168,7 @@ function displayCompletedTasks(projectToShow, i) {
     taskDelete.textContent = "Delete"
     
     // if title doesn't exist yet, then append it
-    if (!document.querySelector(".completedTaskBox > h2")) {
+    if (!document.querySelector("#completedTaskTitle")) {
         completedTaskBox.append(completedTaskTitle)
     }
 

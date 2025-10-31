@@ -7,16 +7,11 @@ const assignCurrentProject = function() {
     const projectButtonList = document.querySelectorAll(".projectButton")
     projectButtonList.forEach((e) => {
         e.addEventListener("click", (e) => {
-            const completedTaskTitle = document.querySelector("#completedTaskTitle")
-            if (completedTaskTitle) {
-                completedTaskTitle.style.display = "none"      
-            }
             currentProject = e.target.textContent
             displayCurrentProject(currentProject)
             const task = activeTasksControl(currentProject)
             task.hideDisplayNewTask()
             task.displayNewTask() // show tasks for that project
-
         })        
     })
 
