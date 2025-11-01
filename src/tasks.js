@@ -51,6 +51,7 @@ function convertActiveToCompleteTask() {
             moveTasktoComplete(currentTask) // deletes current task and moves to complete in memory
             addToAllTasks() // recalculate All Tasks in memory
             activeTasksControl(currentProject).displayNewTask()
+            displayCurrentProjectLabel(currentProjectName)
             localStorage.setItem("projectList", JSON.stringify(projectList))
         }
     })
