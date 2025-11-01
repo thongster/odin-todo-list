@@ -48,10 +48,13 @@ function fillProjectSelect() {
 
 // add new project option on task form
 function addOneProjectOption(projectName) {
-    const projectSelect = document.querySelector("#projectSelect")
-    const projectOption = document.createElement("option")
-    projectOption.textContent = projectName
-    projectSelect.append(projectOption)
+    const projectSelect = document.querySelectorAll(".projectSelect")
+    projectSelect.forEach((e) => {
+        const projectOption = document.createElement("option")
+        projectOption.textContent = projectName
+        e.append(projectOption)
+    })
+
 }
 
 export {displayProject, displayExistingProjects, fillProjectSelect, createAllTasks, addOneProjectOption, projectList, Project}
