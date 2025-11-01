@@ -1,10 +1,10 @@
 import "./../node_modules/modern-normalize/modern-normalize.css"
 import "./style.css"
 import {displayExistingProjects, fillProjectSelect, createAllTasks} from "./projects.js"
-import {newTask, addToAllTasks, convertActiveToCompleteTask, deleteTask} from "./tasks.js"
+import {newTask, addToAllTasks, convertActiveToCompleteTask, deleteTask, editTask} from "./tasks.js"
 import {assignCurrentProject, displayCurrentProjectLabel, defaultDisplayAllTasks} from "./projectlabel.js"
 import {addProject, clickNewProject, exitNewProject} from "./newProjectModal.js"
-import {activeTasksControl, removeNoTasksBox, showNoTasksBox} from "./activeTaskDisplay.js"
+import {activeTasksControl} from "./activeTaskDisplay.js"
 
 addProject()
 clickNewProject()
@@ -20,3 +20,4 @@ addToAllTasks() // initialize all tasks (sum all project tasks and add to All Ta
 defaultDisplayAllTasks()
 convertActiveToCompleteTask()
 deleteTask() // enable delete button
+editTask() // enable edit button

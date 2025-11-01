@@ -31,7 +31,8 @@ const activeTasksControl = function(currentProj) {
         for (let i = 0; i < projectToShow.completedTasks.length; i++) {
             displayCompletedTasks(projectToShow, i)
         }
-
+        
+        // based on if tasks exist or not, remove/show "NoTasksBox" and remove/show CompleteTask Title
         if (projectToShow.activeTasks.length > 0 || projectToShow.completedTasks.length > 0) {
             removeNoTasksBox()
             toggleCompletedTaskTitle(projectToShow)
@@ -82,7 +83,7 @@ const activeTasksControl = function(currentProj) {
         }
     }
     
-    return {displayNewTask, hideDisplayNewTask, removeNoTasksBox, showNoTasksBox, toggleCompletedTaskTitle}
+    return {displayNewTask, hideDisplayNewTask}
 }
 
 function displayActiveTasks(projectToShow, i) {

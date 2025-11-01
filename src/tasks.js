@@ -104,7 +104,6 @@ function deleteTask() {
     // set up event delegation to listen for button click
     document.addEventListener("click", (item) => {
         if (item.target.matches(".deleteButton")) {
-            console.log("at least we are here")
             const ancestor = item.target.closest(".activeTaskItem, .completedTaskItem")
             // find current Task Title and Project Name
             const currentProjectName = ancestor.querySelector(".taskInfo > button:nth-of-type(2)").textContent
@@ -125,21 +124,48 @@ function deleteTask() {
                 localStorage.setItem("projectList", JSON.stringify(projectList)) 
             }
 
-            // write logic for if "All Tasks" is selected
-            // find the corresponding project and delete it from there too
-            
-
             // before it recalculates, it needs to clear the dom
             activeTasksControl().hideDisplayNewTask()
             addToAllTasks() // recalculate tasks for All Tasks
             activeTasksControl(currentProject).displayNewTask()
             displayCurrentProjectLabel(currentProject.name)
             
-            console.log(ancestor, currentProjectName, currentTaskTitle, currentProject)
-            console.log(activeMatch, completedMatch)
             localStorage.setItem("projectList", JSON.stringify(projectList))
         }
     })
 }
 
-export {newTask, addToAllTasks, convertActiveToCompleteTask, deleteTask}
+function editTask() {
+    // set up event delegation to listen for button click
+    document.addEventListener("click", (item) => {
+        if (item.target.matches(".editButton")) {
+            const ancestor = item.target.closest(".activeTaskItem, .completedTaskItem")
+            // find current Task Title and Project Name
+            const currentProjectName = ancestor.querySelector(".taskInfo > button:nth-of-type(2)").textContent
+            const currentTaskTitle = ancestor.querySelector(".taskText > h3").textContent
+            
+            // find project object in projectList by matching names
+            const currentProject = projectList.find((project) => {return project.name == currentProjectName})
+            // // search to see which list the task is in
+            const activeMatch = currentProject.activeTasks.find((task) => {return task.title === currentTaskTitle});
+            const completedMatch = currentProject.completedTasks.find((task) => {return task.title === currentTaskTitle});
+            console.log(activeMatch, completedMatch, currentProject)
+
+            if (activeMatch === undefined) {
+                console.log("edit completed task")
+            } else if (completedMatch === undefined) {
+                console.log("edit active task")
+            }
+
+            // // before it recalculates, it needs to clear the dom
+            // activeTasksControl().hideDisplayNewTask()
+            // addToAllTasks() // recalculate tasks for All Tasks
+            // activeTasksControl(currentProject).displayNewTask()
+            // displayCurrentProjectLabel(currentProject.name)
+            
+            // localStorage.setItem("projectList", JSON.stringify(projectList))
+        }
+    })
+}
+
+export {newTask, addToAllTasks, convertActiveToCompleteTask, deleteTask, editTask}
