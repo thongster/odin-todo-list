@@ -1,5 +1,5 @@
 import {projectList, Project} from "./projects.js"
-import {displayCurrentProject, assignCurrentProject} from "./projectlabel.js"
+import {displayCurrentProjectLabel, assignCurrentProject} from "./projectlabel.js"
 import {activeTasksControl} from "./activeTaskDisplay.js"
 
 
@@ -66,9 +66,8 @@ function newTask() {
             e.target.projectSelect.value, e.target.priority.value, 
             e.target.dueDate.value
         )
-        console.log(newTask)
         addTaskToProject(newTask)
-        displayCurrentProject(e.target.projectSelect.value)
+        displayCurrentProjectLabel(e.target.projectSelect.value)
         activeTasksControl().hideDisplayNewTask()
         activeTasksControl(e.target.projectSelect.value).displayNewTask()
         addToAllTasks()
@@ -102,9 +101,9 @@ function addToAllTasks() {
 
 function deleteTask() {
     // set up event delegation to listen for button click
-    document.querySelectorAll(".taskOptions").forEach((e) => {
-        const deleteButton = e.querySelector(".deleteButton");
-        deleteButton.addEventListener("click", (item) => {
+    document.addEventListener("click", (item) => {
+        if (item.target.matches(".deleteButton")) {
+            console.log("at least we are here")
             const ancestor = item.target.closest(".activeTaskItem, .completedTaskItem")
             // find current Task Title and Project Name
             const currentProjectName = ancestor.querySelector(".taskInfo > button:nth-of-type(2)").textContent
@@ -125,18 +124,19 @@ function deleteTask() {
                 localStorage.setItem("projectList", JSON.stringify(projectList)) 
             }
 
-            activeTasksControl(currentProject).displayNewTask()
+            // write logic for if "All Tasks" is selected
+            // find the corresponding project and delete it from there too
+            
+
+            // before it recalculates, it needs to clear the dom
             addToAllTasks() // recalculate tasks for All Tasks
+            activeTasksControl(currentProject).displayNewTask()
             
             console.log(ancestor, currentProjectName, currentTaskTitle, currentProject)
             console.log(activeMatch, completedMatch)
             // localStorage.setItem("projectList", JSON.stringify(projectList))
-        })
+        }
     })
-
-
-            
-
 }
 
 export {newTask, addToAllTasks, convertActiveToCompleteTask, deleteTask}

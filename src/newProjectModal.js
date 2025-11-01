@@ -1,4 +1,4 @@
-import {assignCurrentProject, displayCurrentProject} from "./projectlabel.js"
+import {assignCurrentProject, displayCurrentProjectLabel} from "./projectlabel.js"
 import {displayProject, addOneProjectOption, projectList, Project, displayExistingProjects} from "./projects.js"
 import {activeTasksControl} from "./activeTaskDisplay.js"
 
@@ -54,7 +54,7 @@ function addProject() {
         displayProject(newProject.name) // display to project side bar
         addOneProjectOption(newProject.name) // add to New Task form selections
         assignCurrentProject() // immediately add to current projectList
-        displayCurrentProject(newProject.name) // display to project Label box
+        displayCurrentProjectLabel(newProject.name) // display to project Label box
         activeTasksControl().hideDisplayNewTask()
         activeTasksControl(newProject.name).displayNewTask()
 

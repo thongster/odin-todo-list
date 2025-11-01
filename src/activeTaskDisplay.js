@@ -67,10 +67,18 @@ const activeTasksControl = function(currentProj) {
     function toggleCompletedTaskTitle(projectToShow) {
         if (projectToShow.completedTasks.length === 0) {
             const completedTaskTitle = document.querySelector("#completedTaskTitle")
-            completedTaskTitle.style.display = "none"   
+            if (completedTaskTitle === null) {
+                return;
+            } else {
+                completedTaskTitle.style.display = "none"   
+            }
         } else {
             const completedTaskTitle = document.querySelector("#completedTaskTitle")
-            completedTaskTitle.style.display = "flex"   
+            if (completedTaskTitle === null) {
+                return;
+            } else {
+                completedTaskTitle.style.display = "flex"   
+            }
         }
     }
     

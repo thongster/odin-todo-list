@@ -8,10 +8,10 @@ const assignCurrentProject = function() {
     projectButtonList.forEach((e) => {
         e.addEventListener("click", (e) => {
             currentProject = e.target.textContent
-            displayCurrentProject(currentProject)
             const task = activeTasksControl(currentProject)
             task.hideDisplayNewTask()
             task.displayNewTask() // show tasks for that project
+            displayCurrentProjectLabel(currentProject)
         })        
     })
 
@@ -20,13 +20,13 @@ const assignCurrentProject = function() {
 
 function defaultDisplayAllTasks() {
     let currentProject = "All Tasks"
-    displayCurrentProject(currentProject)
+    displayCurrentProjectLabel(currentProject)
     const fillTasks = activeTasksControl(currentProject)
     fillTasks.displayNewTask()
 }
 
 // display current project on project label box
-function displayCurrentProject(currentProject) {
+function displayCurrentProjectLabel(currentProject) {
     const projectLabelBox = document.querySelector(".projectLabelBox")
     // loop through project list, 
     projectList.forEach((e) => {
@@ -48,4 +48,4 @@ function displayAllTasksProject() {
 
 }
 
-export {assignCurrentProject, displayCurrentProject, defaultDisplayAllTasks}
+export {assignCurrentProject, displayCurrentProjectLabel, defaultDisplayAllTasks}
