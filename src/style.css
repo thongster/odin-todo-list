@@ -361,12 +361,24 @@ header > div > h2 {
     gap: 0.5rem;
 }
 
-.newProjectModal > div:first-of-type {
+.newProjectModal > div:first-of-type, .editTaskModalModal > div:first-of-type {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+.editTaskModal {
+    display: flex;
+    flex-direction: column;
+    width: minmax(50%, 400px);
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    padding: 2rem;
+    background-color: white;
+    gap: 0.5rem;
 }
 
 .modal h2 {

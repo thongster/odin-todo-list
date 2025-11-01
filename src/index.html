@@ -101,6 +101,47 @@
                 <button type="submit" class="buttonOne" id="addProjectButton">Add Project</button>
             </form>
         </div>
+        <div class="editTaskModal">
+            <div>
+                <h2>Edit Task</h2>
+                <span id="closeModalButton"> &times; </span>
+            </div>
+            <form action="/" method="post" class="newTaskFormModal">
+                <div>
+                    <label for="title" class="hideLabel">Task Title</label>
+                    <input type="text" id="title" name="title" required placeholder="Task title...">
+                </div>
+                <div>
+                    <label for="shortDesc" class="hideLabel">Short Description</label>
+                    <input type="text" id="shortDesc" name="shortDesc" placeholder="Short description...">
+                </div>
+
+                <div class="selections">
+                    <div>
+                        <label for="projectSelect" class="hideLabel">Project</label>
+                        <select name="projectSelect" id="projectSelect" required>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="priority" class="hideLabel">Priority</label>
+                        <select name="priority" id="priority" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium" select>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="dueDate" class="hideLabel">Due Date</label>
+                        <input type="date" name="dueDate" id="dueDate" required>
+                    </div>
+                </div>
+
+                <div class="addTaskButtons">
+                    <button type="button" class="buttonTwo">Add Details</button>
+                    <button type="submit" class="buttonOne">+ Add Task</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
