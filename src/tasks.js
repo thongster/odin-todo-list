@@ -115,12 +115,12 @@ function deleteTask() {
             // search to see which list the task is in
             const activeMatch = currentProject.activeTasks.find((task) => {return task.title === currentTaskTitle});
             const completedMatch = currentProject.completedTasks.find((task) => {return task.title === currentTaskTitle});
-            
+
             if (activeMatch === undefined) {
-                currentProject.completedTasks.splice(completedMatch, 1)   
+                currentProject.completedTasks.splice(currentProject.completedTasks.findIndex(value => value === completedMatch), 1)   
                 localStorage.setItem("projectList", JSON.stringify(projectList))  
             } else if (completedMatch === undefined) {
-                currentProject.activeTasks.splice(activeMatch, 1)    
+                currentProject.activeTasks.splice(currentProject.activeTasks.findIndex(value => value === activeMatch), 1)    
                 localStorage.setItem("projectList", JSON.stringify(projectList)) 
             }
 
@@ -129,12 +129,14 @@ function deleteTask() {
             
 
             // before it recalculates, it needs to clear the dom
+            activeTasksControl().hideDisplayNewTask()
             addToAllTasks() // recalculate tasks for All Tasks
             activeTasksControl(currentProject).displayNewTask()
+            displayCurrentProjectLabel(currentProject.name)
             
             console.log(ancestor, currentProjectName, currentTaskTitle, currentProject)
             console.log(activeMatch, completedMatch)
-            // localStorage.setItem("projectList", JSON.stringify(projectList))
+            localStorage.setItem("projectList", JSON.stringify(projectList))
         }
     })
 }

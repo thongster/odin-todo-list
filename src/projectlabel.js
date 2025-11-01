@@ -32,7 +32,6 @@ function displayCurrentProjectLabel(currentProject) {
     projectList.forEach((e) => {
         // if current project (assigned by clicking) is the same as project name
         // display project heading, active, completed tasks
-        
         if (currentProject === e.name) {
             projectLabelBox.textContent = ""
             const projectLabelHeading = document.createElement("h2")
