@@ -31,13 +31,37 @@ function showEditTaskModal(toggle) {
 }
 
 // edit task modal
-function editTaskModal() {
+function editTaskModal(taskObject) {
+    // taskObject.title = title
+    // taskObject.shortDesc = shortDesc
+    // taskObject.project = project
+    // taskObject.priority = priority
+    // taskObject.dueDate = dueDate
+
+    // e.target.title.value, e.target.shortDesc.value, 
+    // e.target.projectSelect.value, e.target.priority.value, 
+    // 
+
+    const editTaskForm = document.querySelector(".editTaskFormDOM")
+    editTaskForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        taskObject.title = e.target.title.value
+        taskObject.shortDesc = e.target.shortDesc.value
+        taskObject.project = e.target.projectSelect.value
+        taskObject.priority = e.target.priority.value
+        taskObject.dueDate = e.target.dueDate.value
+        localStorage.setItem("projectList", JSON.stringify(projectList))
+            
+        editTaskForm.reset() // clear form
+        showModal("off") // exit modal form
+        showEditTaskModal("off")
+    })
+    
 
 }
 
 // display modal when clicking + New Project button
 function clickNewProject() {
-    const modalSection = document.querySelector(".modal")
     const newProjectButton = document.querySelector("#newProjectButton")
     newProjectButton.addEventListener("click", (e) => {
         e.preventDefault
@@ -93,4 +117,4 @@ function addProject() {
     }) 
 }
 
-export {clickNewProject, exitModal, addProject, showModal, showEditTaskModal}
+export {clickNewProject, exitModal, addProject, showModal, showEditTaskModal, editTaskModal}
