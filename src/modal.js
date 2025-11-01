@@ -47,7 +47,7 @@ function clickNewProject() {
 }
 
 // exit new project modal
-function exitNewProject() { 
+function exitModal() { 
     const modalSection = document.querySelector(".modal")
     const closeModalButton = document.querySelectorAll(".closeModalButton")
     closeModalButton.forEach((btn) => {
@@ -93,4 +93,4 @@ function addProject() {
     }) 
 }
 
-export {clickNewProject, exitNewProject, addProject, showModal, showEditTaskModal}
+export {clickNewProject, exitModal, addProject, showModal, showEditTaskModal}

@@ -3,12 +3,12 @@ import "./style.css"
 import {displayExistingProjects, fillProjectSelect, createAllTasks} from "./projects.js"
 import {newTask, addToAllTasks, convertActiveToCompleteTask, deleteTask, editTask} from "./tasks.js"
 import {assignCurrentProject, displayCurrentProjectLabel, defaultDisplayAllTasks} from "./projectlabel.js"
-import {addProject, clickNewProject, exitNewProject} from "./modal.js"
+import {addProject, clickNewProject, exitModal} from "./modal.js"
 import {activeTasksControl} from "./activeTaskDisplay.js"
 
 addProject()
 clickNewProject() // show modal on click new project
-exitNewProject() // exit newproject modal on click
+exitModal() // exit modals on click
 createAllTasks()
 displayExistingProjects()
 fillProjectSelect()

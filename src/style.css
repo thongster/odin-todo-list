@@ -151,8 +151,12 @@ header > div > h2 {
     width: 100%;
 }
 
-.addTaskBox > form > div > input {
+.addTaskBox > form > div > input, .addTaskBox > form > div > textarea {
     width: 100%;
+}
+
+.addTaskButtons > button {
+    width: clamp(150px, 20%, 250px);
 }
 
 .addTaskTitle {
@@ -172,9 +176,10 @@ header > div > h2 {
 }
 
 .addTaskButtons {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
 }
 
 .buttonOne {
@@ -333,10 +338,6 @@ header > div > h2 {
     margin: 0;
 }
 
-.taskOptions > button:nth-of-type(2) {
-    
-}
-
 /* Modals here (hidden by default) */
 .modal {
     display: none;
@@ -369,17 +370,12 @@ header > div > h2 {
     width: 100%;
 }
 
-/* .editTaskModal {
-    display: none;
+.editTaskModal > form {
+    display: flex;
     flex-direction: column;
-    width: minmax(50%, 400px);
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    padding: 2rem;
-    background-color: white;
+    width: 100%;
     gap: 0.5rem;
-} */
+}
 
 .modal h2 {
     color: #374151;
@@ -399,6 +395,32 @@ header > div > h2 {
     height: 100%;
     margin-top: 0.5rem;
 }
+
+.editTaskModal > form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    margin: 1rem 0 0 0;
+}
+
+.editTaskModal > form > div:nth-child(1),
+.editTaskModal > form > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+}
+
+.editTaskModal > form > div > input, .editTaskModal > form > div > textarea {
+    width: 100%;
+}
+
+.editTaskModal > button {
+    width: clamp(150px, 20%, 250px);
+}
+
 
 
 .hidden {
