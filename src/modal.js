@@ -21,6 +21,20 @@ function showNewProjectModal(toggle) {
     }   
 }
 
+function showEditTaskModal(toggle) {
+    const editTaskModal = document.querySelector(".editTaskModal")
+    if (toggle === "on") {
+        editTaskModal.style.display = "flex";
+    } else {
+        editTaskModal.style.display = "none";
+    }       
+}
+
+// edit task modal
+function editTaskModal() {
+
+}
+
 // display modal when clicking + New Project button
 function clickNewProject() {
     const modalSection = document.querySelector(".modal")
@@ -35,17 +49,21 @@ function clickNewProject() {
 // exit new project modal
 function exitNewProject() { 
     const modalSection = document.querySelector(".modal")
-    const closeModalButton = document.querySelector("#closeModalButton")
-    closeModalButton.addEventListener("click", () => {
-        showModal("off")
-        showNewProjectModal("off")
-    })
-    // if click outside modal box
-    window.addEventListener("click", (e) => {
-        if (e.target === modalSection) {
+    const closeModalButton = document.querySelectorAll(".closeModalButton")
+    closeModalButton.forEach((btn) => {
+        btn.addEventListener("click", () => {
             showModal("off")
             showNewProjectModal("off")
-        }
+            showEditTaskModal("off")
+        })
+        // if click outside modal box
+        window.addEventListener("click", (e) => {
+            if (e.target === modalSection) {
+                showModal("off")
+                showNewProjectModal("off")
+                showEditTaskModal("off")
+            }
+        })
     })
 }
 
@@ -75,4 +93,4 @@ function addProject() {
     }) 
 }
 
-export {clickNewProject, exitNewProject, addProject}
+export {clickNewProject, exitNewProject, addProject, showModal, showEditTaskModal}

@@ -349,8 +349,8 @@ header > div > h2 {
     background: rgba(0, 0, 0, 0.4);
 }
 
-.newProjectModal {
-    display: flex;
+.newProjectModal, .editTaskModal {
+    display: none;
     flex-direction: column;
     width: minmax(50%, 400px);
     justify-content: center;
@@ -361,7 +361,7 @@ header > div > h2 {
     gap: 0.5rem;
 }
 
-.newProjectModal > div:first-of-type, .editTaskModalModal > div:first-of-type {
+.newProjectModal > div:first-of-type, .editTaskModal > div:first-of-type {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -369,8 +369,8 @@ header > div > h2 {
     width: 100%;
 }
 
-.editTaskModal {
-    display: flex;
+/* .editTaskModal {
+    display: none;
     flex-direction: column;
     width: minmax(50%, 400px);
     justify-content: center;
@@ -379,7 +379,7 @@ header > div > h2 {
     padding: 2rem;
     background-color: white;
     gap: 0.5rem;
-}
+} */
 
 .modal h2 {
     color: #374151;

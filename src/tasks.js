@@ -1,6 +1,7 @@
 import {projectList, Project} from "./projects.js"
 import {displayCurrentProjectLabel, assignCurrentProject} from "./projectlabel.js"
 import {activeTasksControl} from "./activeTaskDisplay.js"
+import {showModal, showEditTaskModal} from "./modal.js"
 
 
 class Task {
@@ -156,7 +157,8 @@ function editTask() {
             } else if (completedMatch === undefined) {
                 console.log("edit active task")
             }
-
+            showModal("on")
+            showEditTaskModal("on")
             // // before it recalculates, it needs to clear the dom
             // activeTasksControl().hideDisplayNewTask()
             // addToAllTasks() // recalculate tasks for All Tasks
