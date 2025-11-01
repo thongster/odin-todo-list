@@ -3,14 +3,22 @@ import {displayProject, addOneProjectOption, projectList, Project, displayExisti
 import {activeTasksControl} from "./activeTaskDisplay.js"
 
 // show modal pop up functijon (reusable)
-function showModal(modalSection) {
-    modalSection.style.display = "flex";
+function showModal(toggle) {
+    const modalSection = document.querySelector(".modal")
+    if (toggle === "on") {
+        modalSection.style.display = "flex";
+    } else {
+        modalSection.style.display = "none";
+    }
 }
 
-// exit modal pop up function (reusable)
-function exitModal(modalSection) {
-    modalSection = document.querySelector(".modal")
-    modalSection.style.display = "none";
+function showNewProjectModal(toggle) {
+    const newProjectModal = document.querySelector(".newProjectModal")
+    if (toggle === "on") {
+        newProjectModal.style.display = "flex";
+    } else {
+        newProjectModal.style.display = "none";
+    }   
 }
 
 // display modal when clicking + New Project button
@@ -19,7 +27,8 @@ function clickNewProject() {
     const newProjectButton = document.querySelector("#newProjectButton")
     newProjectButton.addEventListener("click", (e) => {
         e.preventDefault
-        showModal(modalSection)
+        showModal("on")
+        showNewProjectModal("on")
     })
 }
 
@@ -28,12 +37,14 @@ function exitNewProject() {
     const modalSection = document.querySelector(".modal")
     const closeModalButton = document.querySelector("#closeModalButton")
     closeModalButton.addEventListener("click", () => {
-        exitModal(modalSection)
+        showModal("off")
+        showNewProjectModal("off")
     })
     // if click outside modal box
     window.addEventListener("click", (e) => {
         if (e.target === modalSection) {
-            exitModal(modalSection)
+            showModal("off")
+            showNewProjectModal("off")
         }
     })
 }
@@ -49,7 +60,8 @@ function addProject() {
         newProject.addToProjectList()
   
         addProjectForm.reset() // clear form
-        exitModal() // exit modal form
+        showModal("off") // exit modal form
+        showNewProjectModal("off")
         
         displayProject(newProject.name) // display to project side bar
         addOneProjectOption(newProject.name) // add to New Task form selections
