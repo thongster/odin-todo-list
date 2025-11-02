@@ -215,7 +215,7 @@ header > div > h2 {
 }
 
 .buttonTwo:hover {
-  background: #f3f4f6;
+  background: #eaeaec;
 }
 
 .projectButton, #newProjectButton {
@@ -262,6 +262,21 @@ header > div > h2 {
     padding: 0.5rem 0 0 1rem;
 }
 
+.activeTaskItem button, .completedTaskBox button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #f9fafb; 
+    color: #374151; 
+    border: none;
+    border-radius: 12px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    box-shadow: 0 3px 4px -3px rgba(0, 0, 0, 0.2);    
+}
+
 .activeTaskItem, .completedTaskItem {
     display: flex;
     align-items: start;
@@ -297,11 +312,31 @@ header > div > h2 {
     flex: 1;  
 }
 
-.buttonDiv > button {
+.activeTaskItem > .buttonDiv > button, .completedTaskItem > .buttonDiv > button {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 100%;        
-    border: 2px solid rgba(0, 0, 0, 0.1); 
+    padding: 0;
+}
+
+.activeTaskItem > .buttonDiv > button {
+    border: 2px solid rgba(0, 139, 0, 0.3); 
+}
+
+.completedTaskItem > .buttonDiv > button {
+    border: 2px solid rgba(139, 0, 0, 0.3); 
+}
+
+button.lowPriority {
+    background: linear-gradient(to bottom left, #f9fafb, #fffd83);
+}
+
+button.mediumPriority {
+    background: linear-gradient(to bottom left, #f9fafb, #ffab4a);
+}
+
+button.highPriority {
+    background: linear-gradient(to bottom left, #f9fafb, #ff4a4a);
 }
 
 .taskMiddleSection {
@@ -323,6 +358,7 @@ header > div > h2 {
 
 .taskText > p {
     margin: 0;
+    white-space: pre-line;
 }
 
 .taskInfo {
@@ -351,6 +387,10 @@ header > div > h2 {
 
 .projectLabelBox p {
     margin: 0;
+}
+
+.projectLabelBox h2 {
+    font-size: 1.25rem;
 }
 
 /* Modals here (hidden by default) */

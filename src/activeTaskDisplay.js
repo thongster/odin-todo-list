@@ -135,7 +135,19 @@ function displayActiveTasks(projectToShow, i) {
     taskMiddleSection.append(taskText, taskInfo)
     taskText.append(taskTitle, taskDesc)
     taskInfo.append(taskPriority, taskProject, taskDueDate)
-    taskOptions.append(taskEdit, taskDelete)    
+    taskOptions.append(taskEdit, taskDelete)
+    
+    switch (taskPriority.textContent) {
+        case "Low":
+            taskPriority.classList.add("lowPriority")
+            break;
+        case "Medium":
+            taskPriority.classList.add("mediumPriority")
+            break;
+        case "High":
+            taskPriority.classList.add("highPriority")
+            break;
+    }
 }
 
 function displayCompletedTasks(projectToShow, i) {
@@ -190,6 +202,18 @@ function displayCompletedTasks(projectToShow, i) {
     taskText.append(taskTitle, taskDesc)
     taskInfo.append(taskPriority, taskProject, taskDueDate)
     taskOptions.append(taskEdit, taskDelete)    
+
+    switch (taskPriority.textContent) {
+        case "Low":
+            taskPriority.classList.add("lowPriority")
+            break;
+        case "Medium":
+            taskPriority.classList.add("mediumPriority")
+            break;
+        case "High":
+            taskPriority.classList.add("highPriority")
+            break;
+    }
 }
 
 export {activeTasksControl}
