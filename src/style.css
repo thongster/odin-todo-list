@@ -169,6 +169,7 @@ header > div > h2 {
 .selections {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
 }
 
 .selections > div > select, .selections > div > input {
@@ -408,7 +409,7 @@ button.highPriority {
 .newProjectModal, .editTaskModal {
     display: none;
     flex-direction: column;
-    width: minmax(50%, 400px);
+    width: clamp(300px, 40%, 500px);
     justify-content: center;
     align-items: center;
     border-radius: 12px;
@@ -518,4 +519,31 @@ button.highPriority {
         display: flex;
         flex-direction: column;
     }
+
+    .newProjectModal {
+        padding: 1rem;
+    }
+
+    .newProjectModal input {
+        width: 100%;
+    }
+
+    .activeTaskItem, .completedTaskItem {
+        display: grid;
+        grid-template-columns: 1fr 9fr;
+    }
+
+    .buttonDiv {
+        grid-column: 1 / 2;
+    }
+
+    .taskMiddleSection {
+        grid-column: 2 / 3;
+        max-width: 100%;
+    }
+
+    .taskOptions {
+        grid-column: 1 / -1;
+    }
+
 }
