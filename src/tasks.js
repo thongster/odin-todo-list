@@ -189,6 +189,8 @@ document.querySelector(".editTaskFormDOM").addEventListener("submit", (e) => {
     projectList.find((projectObject) => {
         if (projectObject.name === currentTaskToEdit.project) {
             // find closest ancestor and determine if activeTask or completedTask list
+            // remove (splice) matching task in original Project
+            // add (splice) matching task to new Project
             if (currentAncestor.classList.contains("activeTaskItem")) {
                 projectObject.activeTasks.splice(projectObject.activeTasks.length - 1, 0, currentTaskToEdit)
                 currentOriginalProject.activeTasks.splice(currentOriginalProject.activeTasks.find(taskObject => taskObject === currentTaskToEdit), 1)

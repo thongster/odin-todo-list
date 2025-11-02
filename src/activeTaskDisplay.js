@@ -142,6 +142,7 @@ function displayCompletedTasks(projectToShow, i) {
     const completedTaskBox = document.querySelector(".completedTaskBox")
     const completedTaskTitle = document.createElement("h2")
     const completedTaskItem = document.createElement("div")
+    const completedTaskOverlay = document.createElement("div")
     const buttonDiv = document.createElement("div")
     const checkTaskButton = document.createElement("button")
     const taskMiddleSection = document.createElement("div")
@@ -157,6 +158,7 @@ function displayCompletedTasks(projectToShow, i) {
     const taskDelete = document.createElement("button")
     
     completedTaskItem.classList.add("completedTaskItem")
+    completedTaskOverlay.classList.add("completedTaskOverlay")
     completedTaskTitle.id = "completedTaskTitle"
     buttonDiv.classList.add("buttonDiv")
     taskMiddleSection.classList.add("taskMiddleSection")
@@ -182,7 +184,7 @@ function displayCompletedTasks(projectToShow, i) {
     }
 
     completedTaskBox.append(completedTaskItem)
-    completedTaskItem.append(buttonDiv, taskMiddleSection, taskOptions)
+    completedTaskItem.append(completedTaskOverlay, buttonDiv, taskMiddleSection, taskOptions)
     buttonDiv.append(checkTaskButton)
     taskMiddleSection.append(taskText, taskInfo)
     taskText.append(taskTitle, taskDesc)
